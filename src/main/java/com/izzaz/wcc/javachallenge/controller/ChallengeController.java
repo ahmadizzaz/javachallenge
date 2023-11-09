@@ -29,14 +29,14 @@ public class ChallengeController {
     @PostMapping(DISTANCE)
     public ResponseModel<Status,PostDistanceResponse> getDistance(HttpServletRequest request,HttpServletResponse response, @RequestBody @Valid PostDistanceRequest body){
         log.info("Headers : {} \n Request : {}",body);
-        return postDistanceService.execute(HeaderUtil.getHeaders(request),body,response);
+        return postDistanceService.execute(HeaderUtil.getHeaders(request),body);
     }
 
     @PatchMapping(POSTAL_V1)
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    public ResponseModel<Status,Void> updatePostalV2(HttpServletRequest request, HttpServletResponse response, @RequestBody @Valid PostalCodeRequest body){
+    public ResponseModel<Status,Void> updatePostal(HttpServletRequest request, HttpServletResponse response, @RequestBody @Valid PostalCodeRequest body){
         log.info("Headers : {} \n Request : {}",body);
-        return updatePostalService.execute(HeaderUtil.getHeaders(request),body,response);
+        return updatePostalService.execute(HeaderUtil.getHeaders(request),body);
     }
 
 }

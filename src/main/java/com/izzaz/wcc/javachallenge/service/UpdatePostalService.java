@@ -7,7 +7,6 @@ import com.izzaz.wcc.javachallenge.model.response.apiresponse.ResponseModel;
 import com.izzaz.wcc.javachallenge.model.response.apiresponse.Status;
 import com.izzaz.wcc.javachallenge.repository.PostalCodeRepository;
 import com.izzaz.wcc.javachallenge.util.exceptionhandling.ResponseUtil;
-import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -22,10 +21,10 @@ public class UpdatePostalService {
     private final PostalCodeRepository postalCodeRepository;
 
     //Another method in the event to throw error if postal code does not exist.
-    public ResponseModel<Status,Void> execute(RequestHeaders headers, final PostalCodeRequest request, HttpServletResponse response){
+    public ResponseModel<Status,Void> execute(RequestHeaders headers, final PostalCodeRequest request){
         var postCodeEntity = postalCodeRepository.findByPostcode(request.getPostcode());
         if (Objects.isNull(postCodeEntity)){
-            throw  ResponseUtil.generateInternalServerError("Invalid postcode value");
+            throw  ResponseUtil.generateNotFoundError("Invalid postcode value");
         }
 
         postalCodeRepository.save(PostalCodeEntity.builder()
