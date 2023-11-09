@@ -1,6 +1,6 @@
 Java Challenge
 
-To run, a simple `mvn spring-boot:run ` will start up the microservice.
+To run, a simple `mvn spring-boot:run ` will start up the microservice. (Slight warning before hand that 200k data will be loaded into the db, may take up to 30second to run, sorry about that!)
   
 To test it out, Postman is required. There is a postman collection in the project directory which can be imported into postman to test.  
 Steps to run Postman:  
