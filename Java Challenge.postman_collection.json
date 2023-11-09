@@ -12,21 +12,9 @@
 			},
 			"request": {
 				"auth": {
-					"type": "basic",
-					"basic": [
-						{
-							"key": "password",
-							"value": "admin",
-							"type": "string"
-						},
-						{
-							"key": "username",
-							"value": "admin",
-							"type": "string"
-						}
-					]
+					"type": "noauth"
 				},
-				"method": "PATCH",
+				"method": "GET",
 				"header": [
 					{
 						"key": "x-consumer-id",
@@ -34,17 +22,8 @@
 						"type": "text"
 					}
 				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"postcode\" :\"AB12 9SP\",\r\n    \"latitude\" : \"500\",\r\n    \"longitude\" : \"700\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
 				"url": {
-					"raw": "localhost:8080/v1/jchallenge/postal",
+					"raw": "localhost:8080/v1/jchallenge/postal?postcode=TA24 6JB",
 					"host": [
 						"localhost"
 					],
@@ -53,6 +32,12 @@
 						"v1",
 						"jchallenge",
 						"postal"
+					],
+					"query": [
+						{
+							"key": "postcode",
+							"value": "TA24 6JB"
+						}
 					]
 				}
 			},
@@ -265,6 +250,159 @@
 					],
 					"cookie": [],
 					"body": "{\n    \"status\": {\n        \"code\": 200,\n        \"message\": \"Success\"\n    },\n    \"data\": {\n        \"postalInfo\": [\n            {\n                \"postalCode\": \"AB10 7JB\",\n                \"latitude\": 57.124274,\n                \"longitude\": -2.127206\n            },\n            {\n                \"postalCode\": \"AB12 9SP\",\n                \"latitude\": 500,\n                \"longitude\": 700\n            }\n        ],\n        \"distance\": 9086.343203978286,\n        \"unit\": \"km\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "localhost:8080/v1/jchallenge/postal",
+			"protocolProfileBehavior": {
+				"followAuthorizationHeader": false
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "x-consumer-id",
+						"value": "123",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"postcode\" :\"AB12 9SP\",\r\n    \"latitude\" : \"43.2434\",\r\n    \"longitude\" : \"123.3435\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/v1/jchallenge/postal",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"jchallenge",
+						"postal"
+					],
+					"query": [
+						{
+							"key": "postcode",
+							"value": "TA24 6JB",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "localhost:8080/v1/jchallenge/postal",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "x-consumer-id",
+								"value": "123",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"postcode\" :\"AB12 9SP\",\r\n    \"latitude\" : \"43.2434\",\r\n    \"longitude\" : \"123.3435\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/v1/jchallenge/postal",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"jchallenge",
+								"postal"
+							],
+							"query": [
+								{
+									"key": "postcode",
+									"value": "TA24 6JB",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 09 Nov 2023 20:09:54 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": {\n        \"code\": 200,\n        \"message\": \"Success\"\n    },\n    \"data\": null\n}"
 				}
 			]
 		}
