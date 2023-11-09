@@ -10,13 +10,10 @@ import com.izzaz.wcc.javachallenge.model.response.apiresponse.Status;
 import com.izzaz.wcc.javachallenge.repository.PostalCodeRepository;
 import com.izzaz.wcc.javachallenge.util.CalculationHelper;
 import com.izzaz.wcc.javachallenge.util.exceptionhandling.ResponseUtil;
-import jakarta.persistence.EntityNotFoundException;
-import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.BooleanUtils;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.HttpClientErrorException.*;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -28,7 +25,7 @@ public class PostDistanceService {
 
     private final PostalCodeRepository postalCodeRepository;
 
-    public ResponseModel<Status,PostDistanceResponse> execute(RequestHeaders headers, final PostDistanceRequest request, HttpServletResponse response){
+    public ResponseModel<Status,PostDistanceResponse> execute(RequestHeaders headers, final PostDistanceRequest request){
         var postalCodeFromData = postalCodeRepository.findByPostcode(request.getPostalCodeFrom());
         if (BooleanUtils.isFalse(isEntityValidated(postalCodeFromData))){
             throw  ResponseUtil.generateNotFoundError("Invalid postalCodeFrom value");
