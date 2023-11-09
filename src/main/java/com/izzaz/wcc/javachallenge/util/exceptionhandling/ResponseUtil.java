@@ -2,7 +2,6 @@ package com.izzaz.wcc.javachallenge.util.exceptionhandling;
 
 import com.izzaz.wcc.javachallenge.model.response.apiresponse.ResponseModel;
 import com.izzaz.wcc.javachallenge.model.response.apiresponse.Status;
-import jakarta.servlet.http.HttpServletResponse;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import org.springframework.http.HttpStatus;

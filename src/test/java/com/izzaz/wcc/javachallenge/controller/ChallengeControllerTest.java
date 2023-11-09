@@ -1,47 +1,34 @@
 package com.izzaz.wcc.javachallenge.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.izzaz.wcc.javachallenge.config.SecurityConfig;
 import com.izzaz.wcc.javachallenge.model.dao.PostalCodeEntity;
 import com.izzaz.wcc.javachallenge.model.request.PostDistanceRequest;
 import com.izzaz.wcc.javachallenge.model.request.PostalCodeRequest;
-import com.izzaz.wcc.javachallenge.model.response.apiresponse.ResponseModel;
-import com.izzaz.wcc.javachallenge.model.response.apiresponse.Status;
 import com.izzaz.wcc.javachallenge.repository.PostalCodeRepository;
-import com.izzaz.wcc.javachallenge.service.PostDistanceService;
-import com.izzaz.wcc.javachallenge.service.UpdatePostalService;
-import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.context.annotation.Import;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
-import org.springframework.security.web.AuthenticationEntryPoint;
-import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.RequestPostProcessor;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import java.math.BigDecimal;
 import java.util.List;
 
-import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.httpBasic;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
 @ExtendWith(SpringExtension.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+@ActiveProfiles("test")
 class ChallengeControllerTest {
     @Autowired
     private WebApplicationContext applicationContext;
@@ -113,6 +100,15 @@ class ChallengeControllerTest {
                                 .postalCodeFrom("ABC 123")
                                 .postalCodeTo("DEF 456")
                                 .build())))
+                .andExpect(status().isOk());
+
+    }
+
+    @Test
+    void success_non_secure_getPostal() throws Exception {
+        this.mockMvc.perform(get("/v1/jchallenge/postal?postcode=ABC 123")
+                        .contentType(MediaType.APPLICATION_JSON)
+                )
                 .andExpect(status().isOk());
 
     }

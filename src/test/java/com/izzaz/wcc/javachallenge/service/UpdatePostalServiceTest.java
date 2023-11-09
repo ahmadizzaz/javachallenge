@@ -1,11 +1,9 @@
 package com.izzaz.wcc.javachallenge.service;
 
 import com.izzaz.wcc.javachallenge.model.dao.PostalCodeEntity;
-import com.izzaz.wcc.javachallenge.model.request.PostDistanceRequest;
 import com.izzaz.wcc.javachallenge.model.request.PostalCodeRequest;
 import com.izzaz.wcc.javachallenge.model.request.RequestHeaders;
 import com.izzaz.wcc.javachallenge.repository.PostalCodeRepository;
-import com.izzaz.wcc.javachallenge.util.CalculationHelper;
 import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

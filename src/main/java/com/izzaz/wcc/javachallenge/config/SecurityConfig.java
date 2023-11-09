@@ -43,10 +43,10 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
             return http.csrf(AbstractHttpConfigurer::disable)
                     .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/v1/jchallenge/distance").permitAll()
-                        .requestMatchers("/v1/jchallenge/postal").hasAnyRole("ADMIN")
-                        .anyRequest()
-                        .authenticated())
+                            .requestMatchers("/v1/jchallenge/distance").permitAll()
+                            .requestMatchers("/v1/jchallenge/postal").hasAnyRole("ADMIN")
+                            .anyRequest()
+                            .authenticated())
                     .httpBasic(Customizer.withDefaults())
                     .exceptionHandling(ex->ex.authenticationEntryPoint(authEntryPoint))
                 .build();
